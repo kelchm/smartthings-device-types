@@ -16,7 +16,7 @@
 
  metadata {
 	// Automatically generated. Make future change here.
-	definition (name: "Aeon Multisensor", namespace: "smartthings", author: "SmartThings") {
+	definition (name: "Aeon Multisensor", namespace: "kelchm", author: "SmartThings") {
 		capability "Motion Sensor"
 		capability "Temperature Measurement"
 		capability "Relative Humidity Measurement"
