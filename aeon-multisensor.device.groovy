@@ -89,7 +89,6 @@
 		standardTile("configure", "device.configure", inactiveLabel: false, decoration: "flat") {
 			state "configure", label:'', action:"configuration.configure", icon:"st.secondary.configure"
 		}
-
 		main(["motion", "temperature", "humidity", "illuminance"])
 		details(["motion", "temperature", "humidity", "illuminance", "battery", "configure"])
 	}
