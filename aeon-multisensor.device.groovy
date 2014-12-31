@@ -16,7 +16,7 @@
 
  metadata {
 	// Automatically generated. Make future change here.
-	definition (name: "Aeon Multisensor", namespace: "kelchm", author: "SmartThings") {
+	definition (name: "Aeon Multisensor - Custom", namespace: "kelchm", author: "SmartThings") {
 		capability "Motion Sensor"
 		capability "Temperature Measurement"
 		capability "Relative Humidity Measurement"
@@ -185,13 +185,19 @@ def configure() {
 		// send binary sensor report instead of basic set for motion
 		zwave.configurationV1.configurationSet(parameterNumber: 5, size: 1, scaledConfigurationValue: 2).format(),
 
-		// send no-motion report 15 seconds after motion stops
-		zwave.configurationV1.configurationSet(parameterNumber: 3, size: 2, scaledConfigurationValue: 15).format(),
+		// send no-motion report 45 seconds after motion stops
+		zwave.configurationV1.configurationSet(parameterNumber: 3, size: 2, scaledConfigurationValue: 45).format(),
 
-		// send all data (temperature, humidity, illuminance & battery) periodically
+		// include all sensors in reporting group 1
 		zwave.configurationV1.configurationSet(parameterNumber: 101, size: 4, scaledConfigurationValue: 225).format(),
 
-		// set data reporting period to 5 minutes
-		zwave.configurationV1.configurationSet(parameterNumber: 111, size: 4, scaledConfigurationValue: 300).format()
+		// disable all sensors in reporting groups 2 and 3
+		zwave.configurationV1.configurationSet(parameterNumber: 102, size: 4, scaledConfigurationValue: 0).format(),
+		zwave.configurationV1.configurationSet(parameterNumber: 103, size: 4, scaledConfigurationValue: 0).format(),
+
+		// set data reporting period to 12 minutes for all reporting groups
+		zwave.configurationV1.configurationSet(parameterNumber: 111, size: 4, scaledConfigurationValue: 720).format(),
+		zwave.configurationV1.configurationSet(parameterNumber: 112, size: 4, scaledConfigurationValue: 720).format(),
+		zwave.configurationV1.configurationSet(parameterNumber: 113, size: 4, scaledConfigurationValue: 720).format()
 	])
 }
